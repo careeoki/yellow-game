@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dfcmebg8pqkre"]
+
+[ext_resource type="Texture2D" uid="uid://fabmwyj1l1a3" path="res://assets/yellow_thing.png" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://cge68d10648rq" path="res://player/scripts/main.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://c1a7eo0bii7ax" path="res://player/scripts/hand.gd" id="1_yw30f"]
+[ext_resource type="Texture2D" uid="uid://bi73vvxg6b8ys" path="res://assets/yellow_thing_arm.png" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://brft7dqgbua7o" path="res://assets/yellow_thing_long.png" id="5_qjkh3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjkh3"]
+radius = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkh3"]
+size = Vector2(96, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw30f"]
+radius = 100.0
+
+[node name="Player" type="Node2D" unique_id=46287232]
+
+[node name="ArmSprite" type="Line2D" parent="." unique_id=283742498]
+points = PackedVector2Array(0, 0, 256, 0)
+width = 64.0
+texture = ExtResource("5_qjkh3")
+texture_mode = 2
+
+[node name="CharacterBody" type="CharacterBody2D" parent="." unique_id=1755682843]
+collision_mask = 6
+motion_mode = 1
+script = ExtResource("1_rkbax")
+
+[node name="Hand" type="CharacterBody2D" parent="CharacterBody" unique_id=1092061756]
+position = Vector2(215, 0)
+collision_mask = 6
+script = ExtResource("1_yw30f")
+
+[node name="ArmSprite" type="Sprite2D" parent="CharacterBody/Hand" unique_id=1250390940]
+z_index = 2
+texture = ExtResource("3_g1dw6")
+offset = Vector2(56, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/Hand" unique_id=1443180520]
+position = Vector2(20, 0)
+shape = SubResource("CircleShape2D_qjkh3")
+
+[node name="GrabArea" type="Area2D" parent="CharacterBody/Hand" unique_id=1368998611]
+position = Vector2(42, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/Hand/GrabArea" unique_id=1500911488]
+position = Vector2(26, 0)
+shape = SubResource("RectangleShape2D_qjkh3")
+
+[node name="YellowThing" type="Sprite2D" parent="CharacterBody" unique_id=759971281]
+z_index = 1
+texture = ExtResource("1_oul6g")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody" unique_id=997042604]
+zoom = Vector2(0.3, 0.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" unique_id=848691504]
+shape = SubResource("CircleShape2D_yw30f")
+
+[node name="HandPin" type="PinJoint2D" parent="." unique_id=182754548]
+node_a = NodePath("../CharacterBody/Hand")
