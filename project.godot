@@ -21,7 +21,7 @@ window/stretch/mode="canvas_items"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Dean/Videos/yellow5.avi"
+movie_writer/movie_file="C:/Users/Dean/Videos/yellow6.avi"
 movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true

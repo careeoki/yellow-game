@@ -12,6 +12,8 @@ size = Vector2(20, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkh3"]
 size = Vector2(96, 80)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw30f"]
 radius = 100.0
 
@@ -55,8 +57,15 @@ collision_mask = 4
 position = Vector2(26, 0)
 shape = SubResource("RectangleShape2D_qjkh3")
 
-[node name="AttachPoint" type="Marker2D" parent="Body/Hand" unique_id=1756873996]
-position = Vector2(-235, 0)
+[node name="AttachStaticBody" type="StaticBody2D" parent="Body/Hand" unique_id=532203241]
+position = Vector2(-102, 0)
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hand/AttachStaticBody" unique_id=1061703940]
+z_index = 3
+shape = SubResource("RectangleShape2D_boad6")
+debug_color = Color(0.7589829, 0.34620526, 0.74922365, 0.41960785)
 
 [node name="YellowThing" type="Sprite2D" parent="Body" unique_id=759971281]
 z_index = 1
@@ -67,10 +76,6 @@ zoom = Vector2(0.3, 0.3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=848691504]
 shape = SubResource("CircleShape2D_yw30f")
-
-[node name="HandPin" type="PinJoint2D" parent="." unique_id=182754548]
-node_a = NodePath("../Body/Hand")
-bias = 0.9
 
 [node name="PosTest" type="ColorRect" parent="." unique_id=1926293704]
 z_index = 3
