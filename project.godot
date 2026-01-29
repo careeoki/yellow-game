@@ -21,7 +21,7 @@ window/stretch/mode="canvas_items"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Dean/Videos/yellow4.avi"
+movie_writer/movie_file="C:/Users/Dean/Videos/yellow5.avi"
 movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
@@ -59,11 +59,13 @@ grab={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Wall"
 2d_physics/layer_3="Object"
+2d_physics/layer_4="Grabbed"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
 2d/default_gravity_vector=Vector2(0, 0)
+2d/default_linear_damp=2.0
 
 [rendering]
 

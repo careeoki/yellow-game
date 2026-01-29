@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfcmebg8pqkre" path="res://player/player.tscn" id="1_qidu3"]
 [ext_resource type="PackedScene" uid="uid://bw5u6r4bq0bp4" path="res://objects/box.tscn" id="2_p2b2u"]
 [ext_resource type="PackedScene" uid="uid://ck2f23esyag6j" path="res://tilesets/test.tscn" id="3_xinqt"]
+[ext_resource type="PackedScene" uid="uid://cky4yr2i44np4" path="res://objects/sword.tscn" id="4_5ur6n"]
 
 [node name="Level" type="Node2D" unique_id=1335318244]
 
@@ -21,3 +22,6 @@ position = Vector2(94, 676)
 
 [node name="Box3" parent="." unique_id=775017320 instance=ExtResource("2_p2b2u")]
 position = Vector2(883, 387)
+
+[node name="Sword" parent="." unique_id=1310389542 instance=ExtResource("4_5ur6n")]
+position = Vector2(-586, 577)
