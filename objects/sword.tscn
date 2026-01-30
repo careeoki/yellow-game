@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_s28hv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s28hv"]
-size = Vector2(200, 32)
+size = Vector2(256, 48)
 
 [node name="Sword" type="RigidBody2D" unique_id=1310389542]
 collision_layer = 4
@@ -16,8 +16,10 @@ script = ExtResource("1_s28hv")
 [node name="GrabMarker" type="Marker2D" parent="." unique_id=1599262412]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1149716988]
-position = Vector2(-13, 0)
+position = Vector2(113.8, 0.20000458)
+scale = Vector2(1.475, 1.475)
 texture = ExtResource("1_1ajn3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=631458538]
+position = Vector2(106.8, 0.20000458)
 shape = SubResource("RectangleShape2D_s28hv")

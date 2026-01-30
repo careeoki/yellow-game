@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi73vvxg6b8ys"
-path="res://.godot/imported/yellow_thing_arm.png-d007179ffecf34da5c42a755afdb85f5.ctex"
+uid="uid://c6846cun76b07"
+path="res://.godot/imported/5kg_weight.png-6cc277ffa80c2f959dca42104f71dfb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/yellow_thing_arm.png"
-dest_files=["res://.godot/imported/yellow_thing_arm.png-d007179ffecf34da5c42a755afdb85f5.ctex"]
+source_file="res://assets/objects/5kg_weight.png"
+dest_files=["res://.godot/imported/5kg_weight.png-6cc277ffa80c2f959dca42104f71dfb6.ctex"]
 
 [params]
 

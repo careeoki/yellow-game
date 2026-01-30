@@ -4,7 +4,6 @@ class_name PlayerHand extends CharacterBody2D
 @onready var arm_sprite: Line2D = $"../../ArmSprite"
 @onready var grab_area: Area2D = $GrabArea
 @onready var attach_static_body: StaticBody2D = $AttachStaticBody
-@onready var grab_groove_joint: GrooveJoint2D = $AttachStaticBody/GrabGrooveJoint
 @onready var final_position: ColorRect = $"../FinalPosition"
 @onready var hand_sprite: Sprite2D = $"../HandSprite"
 
@@ -12,7 +11,6 @@ class_name PlayerHand extends CharacterBody2D
 var pin_joint: PinJoint2D = null
 var spring: DampedSpringJoint2D = null
 var grabbed_object: Grab_Object = null
-var object_initial_rotation
 var hand_velocity: Vector2
 
 
@@ -20,7 +18,6 @@ func _physics_process(_delta: float) -> void:
 	final_position.global_position = get_global_mouse_position()
 	if final_position.position.length() > 600:
 		final_position.position = final_position.position.normalized() * 600
-	
 	#if grabbed_object:
 		#hand_velocity = (grabbed_object.global_position - global_position) * 3
 	#else:
@@ -47,9 +44,10 @@ func _physics_process(_delta: float) -> void:
 		hand_sprite.global_position = global_position
 		arm_sprite.set_point_position(1, global_position)
 	else:
-		hand_sprite.global_position = grabbed_object.grab_marker.global_position
+		hand_sprite.global_position = grabbed_object.global_position
 		arm_sprite.set_point_position(1, grabbed_object.global_position)
 	hand_sprite.look_at(body.position)
+	
 
 
 func grab_handling():
@@ -62,21 +60,15 @@ func grab_handling():
 			exit_grab()
 	if grabbed_object != null:
 		var grab_velocity: Vector2 =  attach_static_body.global_position - grabbed_object.global_position
-		grabbed_object.apply_force(grab_velocity * 100)
-		#grabbed_object.linear_velocity = Vector2.ZERO
-		#grabbed_object.rotation = rotation
-		#global_position = grabbed_object.grab_marker.global_position
+		grabbed_object.apply_force(grab_velocity * 120)
+		grabbed_object.target_position = body.global_position
 		
-		#if grabbed_object.get_child(0).global_position.distance_to(attach_static_body.global_position) > 600:
-			#exit_grab()
+		if grabbed_object.get_child(0).global_position.distance_to(attach_static_body.global_position) > 1000:
+			exit_grab()
 		pass
 			
 func enter_grab(new_object):
 	grabbed_object = new_object
-	#attach_static_body.set_collision_layer_value(1, true)
-	
-	attach_static_body.global_position = grabbed_object.global_position
-	#grabbed_object.grab_marker.global_position = grab_area.global_position
 	grabbed_object.linear_damp = 20
 	#grabbed_object.angular_damp = 30
 	set_collision_layer_value(1, false)
@@ -85,8 +77,6 @@ func enter_grab(new_object):
 	grabbed_object.set_collision_layer_value(3, false)
 	grabbed_object.set_collision_layer_value(4, true)
 	grabbed_object.set_collision_mask_value(1, false)
-	#object_initial_rotation = grabbed_object.rotation
-	#create_pin_joint()
 
 func exit_grab():
 	global_position = grabbed_object.global_position
@@ -99,42 +89,9 @@ func exit_grab():
 	grabbed_object.set_collision_layer_value(3, true)
 	grabbed_object.set_collision_layer_value(4, false)
 	grabbed_object.set_collision_mask_value(1, true)
+	grabbed_object.exit_grab()
 	grabbed_object = null
 	
 	await get_tree().create_timer(0.1).timeout
 	set_collision_layer_value(1, true)
 	set_collision_mask_value(3, true)
-	#remove_pin_joint()
-
-func create_spring():
-	if spring == null:
-		spring = DampedSpringJoint2D.new()
-		attach_static_body.add_child(spring)
-		spring.stiffness = 100
-		spring.length = 1
-		spring.damping = 1
-		spring.bias = 0.9
-	attach_static_body.global_position = grabbed_object.global_position
-	grab_groove_joint.node_b = grabbed_object.get_path()
-	spring.node_a = attach_static_body.get_path()
-	spring.node_b = grabbed_object.get_path()
-
-func remove_spring():
-	spring.node_a = ""
-	spring.node_b = ""
-
-func create_pin_joint():
-	if pin_joint == null:
-		pin_joint = PinJoint2D.new()
-		attach_static_body.add_child(pin_joint)
-		#pin_joint.angular_limit_enabled = true
-		#pin_joint.position = attach_static_body.position
-	attach_static_body.global_position = grabbed_object.global_position
-	pin_joint.bias = 0.5
-	pin_joint.node_a = attach_static_body.get_path()
-	pin_joint.node_b = grabbed_object.get_path()
-	
-
-func remove_pin_joint():
-	pin_joint.node_a = ""
-	pin_joint.node_b = ""

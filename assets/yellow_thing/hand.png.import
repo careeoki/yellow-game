@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brft7dqgbua7o"
-path="res://.godot/imported/yellow_thing_long.png-633df831c3669517b9e809363104db87.ctex"
+uid="uid://bi73vvxg6b8ys"
+path="res://.godot/imported/hand.png-3a514976b576631ada1549301ab2b806.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/yellow_thing_long.png"
-dest_files=["res://.godot/imported/yellow_thing_long.png-633df831c3669517b9e809363104db87.ctex"]
+source_file="res://assets/yellow_thing/hand.png"
+dest_files=["res://.godot/imported/hand.png-3a514976b576631ada1549301ab2b806.ctex"]
 
 [params]
 

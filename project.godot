@@ -18,10 +18,11 @@ config/icon="res://icon.svg"
 [display]
 
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://6jk6l7jnklfg"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Dean/Videos/yellow7.avi"
+movie_writer/movie_file="C:/Users/Dean/Videos/yellow8.avi"
 movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
