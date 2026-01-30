@@ -13,6 +13,8 @@ mass = 0.5
 angular_damp = 0.5
 script = ExtResource("1_s28hv")
 
+[node name="GrabMarker" type="Marker2D" parent="." unique_id=1599262412]
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1149716988]
 position = Vector2(-13, 0)
 texture = ExtResource("1_1ajn3")

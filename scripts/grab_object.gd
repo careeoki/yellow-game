@@ -1,4 +1,5 @@
 class_name Grab_Object extends RigidBody2D
+@onready var grab_marker: Marker2D = $GrabMarker
 
 var reset_state = false
 var move_vector: Vector2

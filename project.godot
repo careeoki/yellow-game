@@ -21,7 +21,7 @@ window/stretch/mode="canvas_items"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Dean/Videos/yellow6.avi"
+movie_writer/movie_file="C:/Users/Dean/Videos/yellow7.avi"
 movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
@@ -65,7 +65,8 @@ grab={
 
 3d/physics_engine="Jolt Physics"
 2d/default_gravity_vector=Vector2(0, 0)
-2d/default_linear_damp=2.0
+2d/default_linear_damp=3.0
+2d/default_angular_damp=2.0
 
 [rendering]
 
