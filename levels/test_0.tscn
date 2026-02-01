@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ck2f23esyag6j" path="res://tilesets/test.tscn" id="3_xinqt"]
 [ext_resource type="PackedScene" uid="uid://cky4yr2i44np4" path="res://objects/sword.tscn" id="4_5ur6n"]
 [ext_resource type="PackedScene" uid="uid://uoadmju8jclm" path="res://objects/5_kg_weight.tscn" id="5_jlsrl"]
+[ext_resource type="PackedScene" uid="uid://531chmj0kt6b" path="res://objects/top_hat.tscn" id="6_anihy"]
 
 [node name="Level" type="Node2D" unique_id=1335318244]
 
@@ -29,3 +30,6 @@ position = Vector2(-586, 577)
 
 [node name="5kgWeight" parent="." unique_id=1705455689 instance=ExtResource("5_jlsrl")]
 position = Vector2(782, -387)
+
+[node name="TopHat" parent="." unique_id=847683572 instance=ExtResource("6_anihy")]
+position = Vector2(-583, -474)

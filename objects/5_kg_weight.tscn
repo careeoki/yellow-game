@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6846cun76b07" path="res://assets/objects/5kg_weight.png" id="2_dn7i3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7be0"]
-size = Vector2(240, 240)
+size = Vector2(200, 200)
 
 [node name="5kgWeight" type="RigidBody2D" unique_id=1705455689]
 collision_layer = 4
@@ -13,11 +13,12 @@ mass = 5.0
 script = ExtResource("1_46t45")
 
 [node name="GrabMarker" type="Marker2D" parent="." unique_id=1252039020]
+position = Vector2(0, -20)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=343163283]
-position = Vector2(0, 120)
+position = Vector2(0, 100)
 texture = ExtResource("2_dn7i3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150723700]
-position = Vector2(0, 120)
+position = Vector2(0, 100)
 shape = SubResource("RectangleShape2D_f7be0")

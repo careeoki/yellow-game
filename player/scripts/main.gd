@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 var direction : Vector2 = Vector2.ZERO
+@onready var leg_sprite: AnimatedSprite2D = $LegSprite
 
 
 const move_speed = 900.0
@@ -18,6 +19,10 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	if direction and leg_sprite.animation == "idle":
+		leg_sprite.play("walk")
+	elif not direction:
+		leg_sprite.play("idle")
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:

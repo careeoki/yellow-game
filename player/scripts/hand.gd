@@ -3,9 +3,12 @@ class_name PlayerHand extends CharacterBody2D
 
 @onready var arm_sprite: Line2D = $"../../ArmSprite"
 @onready var grab_area: Area2D = $GrabArea
-@onready var attach_static_body: StaticBody2D = $AttachStaticBody
+@onready var attach_point: Marker2D = $AttachPoint
 @onready var final_position: ColorRect = $"../FinalPosition"
-@onready var hand_sprite: Sprite2D = $"../HandSprite"
+@onready var hand_sprite: AnimatedSprite2D = $"../HandSprite"
+@onready var grab_look_at: Marker2D = $"../GrabLookAt"
+@onready var far_look_at: Marker2D = $"../GrabLookAt/FarLookAt"
+@onready var hat_attach_point: Marker2D = $"../HatAttachPoint"
 
 
 var pin_joint: PinJoint2D = null
@@ -18,6 +21,8 @@ func _physics_process(_delta: float) -> void:
 	final_position.global_position = get_global_mouse_position()
 	if final_position.position.length() > 600:
 		final_position.position = final_position.position.normalized() * 600
+	#if final_position.position.length() < 100:
+		#final_position.position = final_position.position.normalized() * 100
 	#if grabbed_object:
 		#hand_velocity = (grabbed_object.global_position - global_position) * 3
 	#else:
@@ -47,6 +52,7 @@ func _physics_process(_delta: float) -> void:
 		hand_sprite.global_position = grabbed_object.global_position
 		arm_sprite.set_point_position(1, grabbed_object.global_position)
 	hand_sprite.look_at(body.position)
+	grab_look_at.look_at(final_position.global_position)
 	
 
 
@@ -59,18 +65,18 @@ func grab_handling():
 		else:
 			exit_grab()
 	if grabbed_object != null:
-		var grab_velocity: Vector2 =  attach_static_body.global_position - grabbed_object.global_position
+		var grab_velocity: Vector2 =  attach_point.global_position - grabbed_object.global_position
 		grabbed_object.apply_force(grab_velocity * 120)
-		grabbed_object.target_position = body.global_position
+		grabbed_object.target_position = far_look_at.global_position
 		
-		if grabbed_object.get_child(0).global_position.distance_to(attach_static_body.global_position) > 1000:
+		if grabbed_object.get_child(0).global_position.distance_to(attach_point.global_position) > 1000:
 			exit_grab()
 		pass
 			
 func enter_grab(new_object):
 	grabbed_object = new_object
 	grabbed_object.linear_damp = 20
-	#grabbed_object.angular_damp = 30
+	grabbed_object.angular_damp = -1
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(3, false)
 	set_collision_mask_value(2, false)
@@ -84,14 +90,18 @@ func exit_grab():
 	grabbed_object.angular_damp = 0
 
 	set_collision_mask_value(2, true)
+	if grabbed_object.equipable and get_global_mouse_position().distance_to(body.global_position) < 100:
+		grabbed_object.equip(hat_attach_point)
+		grabbed_object = null
+		return
+	else:
 	
-	attach_static_body.set_collision_layer_value(1, false)
-	grabbed_object.set_collision_layer_value(3, true)
-	grabbed_object.set_collision_layer_value(4, false)
-	grabbed_object.set_collision_mask_value(1, true)
-	grabbed_object.exit_grab()
-	grabbed_object = null
-	
+		grabbed_object.set_collision_layer_value(3, true)
+		grabbed_object.set_collision_layer_value(4, false)
+		grabbed_object.set_collision_mask_value(1, true)
+		grabbed_object.exit_grab()
+		grabbed_object = null
+		
 	await get_tree().create_timer(0.1).timeout
 	set_collision_layer_value(1, true)
 	set_collision_mask_value(3, true)
