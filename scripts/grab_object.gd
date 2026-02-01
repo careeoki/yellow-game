@@ -1,6 +1,7 @@
 class_name Grab_Object extends RigidBody2D
 
 @export var equipable: bool = false
+@onready var sprite: Sprite2D = $Sprite2D
 
 var reset_state = false
 var move_vector: Vector2
@@ -13,6 +14,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 		SmoothLookAtRigid(target_position, default_turn_speed)
 	if equip_position:
 		global_position = equip_position.global_position
+		rotation = 0
 	pass
 
 # via https://github.com/LillyByte/godot-smoothlookat2d

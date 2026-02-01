@@ -75,6 +75,7 @@ func grab_handling():
 			
 func enter_grab(new_object):
 	grabbed_object = new_object
+	grabbed_object.sprite.z_index = 2
 	grabbed_object.linear_damp = 20
 	grabbed_object.angular_damp = -1
 	set_collision_layer_value(1, false)
@@ -88,14 +89,15 @@ func exit_grab():
 	global_position = grabbed_object.global_position
 	grabbed_object.linear_damp = 0
 	grabbed_object.angular_damp = 0
-
+	
 	set_collision_mask_value(2, true)
 	if grabbed_object.equipable and get_global_mouse_position().distance_to(body.global_position) < 100:
 		grabbed_object.equip(hat_attach_point)
 		grabbed_object = null
 		return
 	else:
-	
+		
+		grabbed_object.sprite.z_index = 1
 		grabbed_object.set_collision_layer_value(3, true)
 		grabbed_object.set_collision_layer_value(4, false)
 		grabbed_object.set_collision_mask_value(1, true)
