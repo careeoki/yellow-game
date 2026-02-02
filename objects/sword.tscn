@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ovfcyaj75uub" path="res://assets/objects/test_sword.png" id="1_1ajn3"]
 [ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_s28hv"]
+[ext_resource type="AudioStream" uid="uid://b0tkqbd8j70cr" path="res://assets/sound/qubodup__sword-hit.wav" id="3_yas8w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s28hv"]
 radius = 49.77
@@ -25,3 +26,6 @@ texture = ExtResource("1_1ajn3")
 position = Vector2(106.8, 0.20000458)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_s28hv")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1020889863]
+stream = ExtResource("3_yas8w")

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://tbynarirrgge" path="res://assets/yellow_thing/hand/reach.png" id="5_8t03j"]
 [ext_resource type="Texture2D" uid="uid://brft7dqgbua7o" path="res://assets/yellow_thing/arm.png" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://dti3cssahn827" path="res://player/scripts/hand_sprite.gd" id="6_2ieo8"]
+[ext_resource type="AudioStream" uid="uid://ce5dgj15fofht" path="res://assets/sound/copyc4t__slip.wav" id="8_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://c3qfyyv7ejra7" path="res://assets/yellow_thing/face/idle.png" id="8_8t03j"]
 [ext_resource type="Texture2D" uid="uid://n4wxxioctxvn" path="res://assets/yellow_thing/idle.png" id="9_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://6txgkbxvujfg" path="res://assets/yellow_thing/walk.png" id="10_ebec5"]
@@ -147,6 +148,10 @@ shape = SubResource("RectangleShape2D_qjkh3")
 
 [node name="AttachPoint" type="Marker2D" parent="Body/Hand" unique_id=401418453]
 position = Vector2(-75, 0)
+
+[node name="SlipSound" type="AudioStreamPlayer2D" parent="Body/Hand" unique_id=411609287]
+stream = ExtResource("8_2ieo8")
+volume_db = -5.832
 
 [node name="YellowThing" type="Sprite2D" parent="Body" unique_id=759971281]
 z_index = 1

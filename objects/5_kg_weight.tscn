@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_46t45"]
 [ext_resource type="Texture2D" uid="uid://c6846cun76b07" path="res://assets/objects/5kg_weight.png" id="2_dn7i3"]
+[ext_resource type="AudioStream" uid="uid://jnlfakd7wel5" path="res://assets/sound/davidsraba-hit-sound.wav" id="3_dn7i3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7be0"]
 size = Vector2(200, 200)
@@ -22,3 +23,6 @@ texture = ExtResource("2_dn7i3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150723700]
 position = Vector2(0, 100)
 shape = SubResource("RectangleShape2D_f7be0")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=83625175]
+stream = ExtResource("3_dn7i3")

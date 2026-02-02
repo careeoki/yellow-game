@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_bctmu"]
 [ext_resource type="Texture2D" uid="uid://dxq3r3dern084" path="res://assets/objects/test_box.png" id="1_et42k"]
+[ext_resource type="AudioStream" uid="uid://jnlfakd7wel5" path="res://assets/sound/davidsraba-hit-sound.wav" id="3_d7q48"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay8i8"]
 size = Vector2(256, 256)
@@ -9,6 +10,8 @@ size = Vector2(256, 256)
 [node name="Box" type="RigidBody2D" unique_id=1253696258]
 collision_layer = 4
 collision_mask = 15
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_bctmu")
 
 [node name="GrabMarker" type="Marker2D" parent="." unique_id=286616444]
@@ -28,3 +31,8 @@ offset_bottom = 128.0
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1144993324]
 position = Vector2(128, 0)
 texture = ExtResource("1_et42k")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1791639422]
+stream = ExtResource("3_d7q48")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

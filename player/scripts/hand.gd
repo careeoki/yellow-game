@@ -1,6 +1,7 @@
 class_name PlayerHand extends CharacterBody2D
 @onready var body: Player = $".."
 
+@onready var player: Node2D = $"../.."
 @onready var arm_sprite: Line2D = $"../../ArmSprite"
 @onready var grab_area: Area2D = $GrabArea
 @onready var attach_point: Marker2D = $AttachPoint
@@ -9,11 +10,13 @@ class_name PlayerHand extends CharacterBody2D
 @onready var grab_look_at: Marker2D = $"../GrabLookAt"
 @onready var far_look_at: Marker2D = $"../GrabLookAt/FarLookAt"
 @onready var hat_attach_point: Marker2D = $"../HatAttachPoint"
+@onready var slip_sound: AudioStreamPlayer2D = $SlipSound
 
 
 var pin_joint: PinJoint2D = null
 var spring: DampedSpringJoint2D = null
-var grabbed_object: Grab_Object = null
+var grabbed_object: GrabObject = null
+var hat_object: GrabObject = null
 var hand_velocity: Vector2
 
 
@@ -71,10 +74,12 @@ func grab_handling():
 		
 		if grabbed_object.get_child(0).global_position.distance_to(attach_point.global_position) > 1000:
 			exit_grab()
+			slip_sound.play()
 		pass
 			
 func enter_grab(new_object):
 	grabbed_object = new_object
+	grabbed_object.reparent(player)
 	grabbed_object.sprite.z_index = 2
 	grabbed_object.linear_damp = 20
 	grabbed_object.angular_damp = -1
@@ -93,11 +98,13 @@ func exit_grab():
 	set_collision_mask_value(2, true)
 	if grabbed_object.equipable and get_global_mouse_position().distance_to(body.global_position) < 100:
 		grabbed_object.equip(hat_attach_point)
+		hat_object = grabbed_object
 		grabbed_object = null
 		return
 	else:
 		
-		grabbed_object.sprite.z_index = 1
+		grabbed_object.reparent(get_tree().current_scene)
+		grabbed_object.sprite.z_index = 0
 		grabbed_object.set_collision_layer_value(3, true)
 		grabbed_object.set_collision_layer_value(4, false)
 		grabbed_object.set_collision_mask_value(1, true)
