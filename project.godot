@@ -22,7 +22,7 @@ mouse_cursor/custom_image="uid://6jk6l7jnklfg"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Dean/Videos/yellow8.avi"
+movie_writer/movie_file="C:/Users/Dean/Videos/yellow9.avi"
 movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
@@ -61,12 +61,15 @@ grab={
 2d_physics/layer_2="Wall"
 2d_physics/layer_3="Object"
 2d_physics/layer_4="Grabbed"
+2d_physics/layer_5="NPC"
+2d_physics/layer_8="PlayerHurt"
+2d_physics/layer_9="Hitbox"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
 2d/default_gravity_vector=Vector2(0, 0)
-2d/default_linear_damp=3.0
+2d/default_linear_damp=4.0
 2d/default_angular_damp=2.0
 
 [rendering]

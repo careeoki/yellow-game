@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://c3qfyyv7ejra7" path="res://assets/yellow_thing/face/idle.png" id="8_8t03j"]
 [ext_resource type="Texture2D" uid="uid://n4wxxioctxvn" path="res://assets/yellow_thing/idle.png" id="9_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://6txgkbxvujfg" path="res://assets/yellow_thing/walk.png" id="10_ebec5"]
+[ext_resource type="PackedScene" uid="uid://7sffaafoqmor" path="res://general/hitbox/hit_box.tscn" id="12_ebec5"]
+[ext_resource type="AudioStream" uid="uid://bl0ngyx3vio02" path="res://assets/sound/dspopain.wav" id="13_yllr7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ebec5"]
 animations = [{
@@ -92,6 +94,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw30f"]
 radius = 64.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yllr7"]
+radius = 55.0
+
 [node name="Player" type="Node2D" unique_id=46287232]
 
 [node name="ArmSprite" type="Line2D" parent="." unique_id=283742498]
@@ -102,7 +107,7 @@ texture = ExtResource("5_qjkh3")
 texture_mode = 2
 
 [node name="Body" type="CharacterBody2D" parent="." unique_id=1755682843]
-collision_mask = 6
+collision_mask = 22
 motion_mode = 1
 script = ExtResource("1_rkbax")
 
@@ -168,8 +173,22 @@ frame_progress = 0.85428613
 zoom = Vector2(0.25, 0.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=848691504]
+z_index = 1
 position = Vector2(0, 39)
 shape = SubResource("CircleShape2D_yw30f")
 
 [node name="HatAttachPoint" type="Marker2D" parent="Body" unique_id=1639428958]
 position = Vector2(0, -91)
+
+[node name="HitBox" parent="Body" unique_id=285698282 instance=ExtResource("12_ebec5")]
+position = Vector2(0, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/HitBox" unique_id=222788671]
+z_index = 2
+shape = SubResource("CircleShape2D_yllr7")
+debug_color = Color(0.95853966, 0.20485106, 0.045706198, 0.41960785)
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="Body" unique_id=1724384022]
+stream = ExtResource("13_yllr7")
+
+[connection signal="Damaged" from="Body/HitBox" to="Body" method="_on_hit_box_damaged"]

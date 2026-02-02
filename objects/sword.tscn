@@ -3,15 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://ovfcyaj75uub" path="res://assets/objects/test_sword.png" id="1_1ajn3"]
 [ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_s28hv"]
 [ext_resource type="AudioStream" uid="uid://b0tkqbd8j70cr" path="res://assets/sound/qubodup__sword-hit.wav" id="3_yas8w"]
+[ext_resource type="PackedScene" uid="uid://ij850b5oujmi" path="res://general/hurtbox/hurt_box.tscn" id="4_eda0f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s28hv"]
-radius = 49.77
+radius = 40.02
 height = 288.43
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcno7"]
+size = Vector2(220, 128)
 
 [node name="Sword" type="RigidBody2D" unique_id=1310389542]
 collision_layer = 4
 collision_mask = 15
 mass = 0.2
+contact_monitor = true
+max_contacts_reported = 1
 angular_damp = 0.5
 script = ExtResource("1_s28hv")
 
@@ -29,3 +35,13 @@ shape = SubResource("CapsuleShape2D_s28hv")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1020889863]
 stream = ExtResource("3_yas8w")
+volume_db = -9.72
+pitch_scale = 0.89
+
+[node name="HurtBox" parent="." unique_id=1365596131 instance=ExtResource("4_eda0f")]
+position = Vector2(148, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1037972829]
+shape = SubResource("RectangleShape2D_gcno7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

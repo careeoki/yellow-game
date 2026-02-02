@@ -4,7 +4,7 @@ class_name GrabObject extends RigidBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
 
-var hit_sound_velocity = 400
+var hit_sound_velocity = 900
 var reset_state = false
 var move_vector: Vector2
 var target_position = null

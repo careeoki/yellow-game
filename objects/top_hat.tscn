@@ -11,6 +11,8 @@ size = Vector2(64, 96)
 collision_layer = 4
 collision_mask = 15
 mass = 0.2
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_nfilg")
 equipable = true
 
@@ -24,3 +26,5 @@ shape = SubResource("RectangleShape2D_lomtr")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=291239699]
 stream = ExtResource("3_7fjts")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

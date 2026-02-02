@@ -1,9 +1,12 @@
 class_name Player extends CharacterBody2D
 
+var health: int = 100
 var direction : Vector2 = Vector2.ZERO
 @onready var leg_sprite: AnimatedSprite2D = $LegSprite
+@onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
+@onready var hand: PlayerHand = $Hand
 
-
+var blood = preload("res://particles/blood.tscn")
 const move_speed = 900.0
 const acceleration = 20
 
@@ -29,3 +32,13 @@ func _physics_process(delta: float) -> void:
 			var push_force = (15 * velocity.length() / move_speed) + 10
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 			
+
+
+func _on_hit_box_damaged(damage: int, object) -> void:
+	if object != hand.grabbed_object:
+		var blood_instance = blood.instantiate()
+		get_tree().current_scene.add_child(blood_instance)
+		blood_instance.global_position = global_position
+		hurt_sound.play()
+		health -= damage
+		print(health)
