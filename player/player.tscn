@@ -134,7 +134,7 @@ position = Vector2(-723, 0)
 
 [node name="Hand" type="CharacterBody2D" parent="Body" unique_id=1092061756]
 position = Vector2(-273, 0)
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("1_yw30f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hand" unique_id=1443180520]

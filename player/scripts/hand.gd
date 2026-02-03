@@ -72,7 +72,7 @@ func grab_handling():
 		grabbed_object.apply_force(grab_velocity * 120)
 		grabbed_object.target_position = far_look_at.global_position
 		
-		if grabbed_object.get_child(0).global_position.distance_to(attach_point.global_position) > 1000:
+		if grabbed_object.get_child(0).global_position.distance_to(body.global_position) > 800:
 			exit_grab()
 			slip_sound.play()
 		pass

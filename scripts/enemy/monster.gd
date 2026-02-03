@@ -4,5 +4,5 @@ extends RigidBody2D
 
 
 
-func _on_hit_box_damaged(damage: int, object) -> void:
+func _on_hit_box_damaged(hurt_box: HurtBox) -> void:
 	queue_free()
