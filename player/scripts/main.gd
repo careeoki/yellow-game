@@ -6,15 +6,18 @@ var direction : Vector2 = Vector2.ZERO
 
 var knockback: Vector2 = Vector2.ZERO
 var knockback_time: float = 0.0
-
+var invulnerable: bool = false
 
 @onready var leg_sprite: AnimatedSprite2D = $LegSprite
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var hand: PlayerHand = $Hand
 
 var blood = preload("res://particles/blood.tscn")
-const move_speed = 900.0
+const move_speed = 1000.0
 const acceleration = 20
+
+func _ready() -> void:
+	PlayerManager.player = self
 
 func get_direction():
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -24,11 +27,16 @@ func get_direction():
 
 func _physics_process(delta: float) -> void:
 	if knockback_time > 0.0:
+		if not invulnerable:
+			invulnerable = true
 		velocity = knockback
+		velocity = lerp(velocity, Vector2.ZERO, delta * 10)
 		knockback_time -= delta
 		if knockback_time <= 0.0:
 			knockback = Vector2.ZERO
 	else:
+		if invulnerable:
+			invulnerable = false
 		velocity = lerp(velocity, get_direction() * move_speed, delta * acceleration)
 	
 	move_and_slide()
@@ -45,20 +53,34 @@ func _physics_process(delta: float) -> void:
 			
 
 func _on_hit_box_damaged(hurt_box: HurtBox) -> void:
-	if hurt_box.get_parent() != hand.grabbed_object:
-		var blood_instance = blood.instantiate()
-		get_tree().current_scene.add_child(blood_instance)
-		blood_instance.global_position = global_position
+	if invulnerable:
+		return
+	if hurt_box.dynamic_knockback:
+		if abs(hurt_box.get_parent().linear_velocity.x) > 200 or abs(hurt_box.get_parent().linear_velocity.y) > 200:
+			if hurt_box.get_parent() != hand.grabbed_object:
+				create_blood()
+				hurt_sound.play()
+				update_health(-hurt_box.damage)
+				var knockback_direction = (hurt_box.global_position - global_position).normalized()
+				var knockback_velocity = (hurt_box.get_parent().linear_velocity.length() * 0.5) + 100
+				apply_knockback(knockback_direction, knockback_velocity, 0.15)
+				print(health)
+	else:
+		create_blood()
 		hurt_sound.play()
 		update_health(-hurt_box.damage)
 		var knockback_direction = (hurt_box.global_position - global_position).normalized()
-		apply_knockback(knockback_direction, hurt_box.knockback, 0.1)
-		print(health)
+		apply_knockback(knockback_direction, hurt_box.knockback, 0.15)
 
 func update_health(delta: int):
 	health = clampi(health + delta, 0, max_health)
 
-func apply_knockback(_direction: Vector2, force: float, duration: float) -> void:
-	knockback = direction * force
+func create_blood():
+	var blood_instance = blood.instantiate()
+	get_tree().current_scene.add_child(blood_instance)
+	blood_instance.global_position = global_position
+
+func apply_knockback(dir: Vector2, force: float, duration: float) -> void:
+	knockback = -dir * force
 	knockback_time = duration
 	

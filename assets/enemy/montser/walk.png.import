@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6dvdb5drxjko"
-path="res://.godot/imported/montser.png-140aba366228d9315c250166f24ed6de.ctex"
+uid="uid://cjhoetcp8idrt"
+path="res://.godot/imported/walk.png-c219491d3bca577a2c7b6f62b20510ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/montser.png"
-dest_files=["res://.godot/imported/montser.png-140aba366228d9315c250166f24ed6de.ctex"]
+source_file="res://assets/enemy/montser/walk.png"
+dest_files=["res://.godot/imported/walk.png-c219491d3bca577a2c7b6f62b20510ed.ctex"]
 
 [params]
 

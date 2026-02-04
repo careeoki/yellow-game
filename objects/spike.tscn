@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://beysf7id75iw6"]
+
+[ext_resource type="Texture2D" uid="uid://bddo4ixt0balw" path="res://assets/objects/spike.png" id="1_gv2ct"]
+[ext_resource type="PackedScene" uid="uid://ij850b5oujmi" path="res://general/hurtbox/hurt_box.tscn" id="2_ghi2j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_br8mr"]
+radius = 115.0
+
+[node name="Spike" type="Node2D" unique_id=1715974748]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601878308]
+texture = ExtResource("1_gv2ct")
+
+[node name="HurtBox" parent="." unique_id=1365596131 instance=ExtResource("2_ghi2j")]
+dynamic_knockback = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1034010389]
+shape = SubResource("CircleShape2D_br8mr")

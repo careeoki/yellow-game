@@ -9,7 +9,7 @@ size = Vector2(64, 96)
 
 [node name="TopHat" type="RigidBody2D" unique_id=847683572]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 31
 mass = 0.2
 contact_monitor = true
 max_contacts_reported = 1

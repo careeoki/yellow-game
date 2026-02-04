@@ -1,7 +1,8 @@
 class_name HurtBox extends Area2D
 
 @export var damage: int = 1
-@export var knockback: float = 10000
+@export var dynamic_knockback: bool = true
+@export var knockback: float = 1000
 
 
 func _ready() -> void:

@@ -14,7 +14,7 @@ size = Vector2(220, 128)
 
 [node name="Sword" type="RigidBody2D" unique_id=1310389542]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 31
 mass = 0.2
 contact_monitor = true
 max_contacts_reported = 1
@@ -35,7 +35,7 @@ shape = SubResource("CapsuleShape2D_s28hv")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1020889863]
 stream = ExtResource("3_yas8w")
-volume_db = -9.72
+volume_db = -14.49
 pitch_scale = 0.89
 
 [node name="HurtBox" parent="." unique_id=1365596131 instance=ExtResource("4_eda0f")]

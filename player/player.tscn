@@ -190,5 +190,6 @@ debug_color = Color(0.95853966, 0.20485106, 0.045706198, 0.41960785)
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="Body" unique_id=1724384022]
 stream = ExtResource("13_yllr7")
+volume_db = -8.587
 
 [connection signal="Damaged" from="Body/HitBox" to="Body" method="_on_hit_box_damaged"]
