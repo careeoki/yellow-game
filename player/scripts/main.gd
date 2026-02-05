@@ -14,10 +14,10 @@ var invulnerable: bool = false
 
 var blood = preload("res://particles/blood.tscn")
 const move_speed = 1000.0
-const acceleration = 20
+const acceleration = 15
 
-func _ready() -> void:
-	PlayerManager.player = self
+#func _ready() -> void:
+	#PlayerManager.player = self
 
 func get_direction():
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

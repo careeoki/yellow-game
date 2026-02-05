@@ -1,8 +1,8 @@
 class_name PlayerHand extends CharacterBody2D
 @onready var body: Player = $".."
 
-@onready var player: Node2D = $"../.."
-@onready var arm_sprite: Line2D = $"../../ArmSprite"
+@onready var player: Player = $".."
+@onready var arm_sprite: Sprite2D = $"../ArmSprite"
 @onready var grab_area: Area2D = $GrabArea
 @onready var attach_point: Marker2D = $AttachPoint
 @onready var final_position: ColorRect = $"../FinalPosition"
@@ -18,6 +18,7 @@ var spring: DampedSpringJoint2D = null
 var grabbed_object: GrabObject = null
 var hat_object: GrabObject = null
 var hand_velocity: Vector2
+var max_reach_round = 429
 
 
 func _physics_process(_delta: float) -> void:
@@ -43,19 +44,19 @@ func _physics_process(_delta: float) -> void:
 		if c.get_collider() is RigidBody2D:
 			var push_force = (15 * velocity.length() / 1000) + 15
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
-	arm_sprite.set_point_position(0, get_parent().global_position)
 	
 	grab_handling()
 	body.get_angle_to(position)
 	
 	if !grabbed_object:
 		hand_sprite.global_position = global_position
-		arm_sprite.set_point_position(1, global_position)
 	else:
 		hand_sprite.global_position = grabbed_object.global_position
-		arm_sprite.set_point_position(1, grabbed_object.global_position)
 	hand_sprite.look_at(body.position)
 	grab_look_at.look_at(final_position.global_position)
+	arm_sprite.look_at(hand_sprite.global_position)
+	arm_sprite.scale = Vector2(round(hand_sprite.position.length()) / max_reach_round, 1)
+	print(round(hand_sprite.position.length()) / max_reach_round, " ", round(position.length()))
 	
 
 

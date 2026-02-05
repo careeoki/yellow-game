@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://n4wxxioctxvn" path="res://assets/yellow_thing/idle.png" id="9_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://6txgkbxvujfg" path="res://assets/yellow_thing/walk.png" id="10_ebec5"]
 [ext_resource type="PackedScene" uid="uid://7sffaafoqmor" path="res://general/hitbox/hit_box.tscn" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://cndirh3tph4w4" path="res://player/scripts/player_camera.gd" id="12_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://bl0ngyx3vio02" path="res://assets/sound/dspopain.wav" id="13_yllr7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ebec5"]
@@ -97,21 +98,12 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_yllr7"]
 radius = 55.0
 
-[node name="Player" type="Node2D" unique_id=46287232]
-
-[node name="ArmSprite" type="Line2D" parent="." unique_id=283742498]
-z_index = 1
-points = PackedVector2Array(0, 0, 256, 0)
-width = 64.0
-texture = ExtResource("5_qjkh3")
-texture_mode = 2
-
-[node name="Body" type="CharacterBody2D" parent="." unique_id=1755682843]
+[node name="Player" type="CharacterBody2D" unique_id=1755682843]
 collision_mask = 22
 motion_mode = 1
 script = ExtResource("1_rkbax")
 
-[node name="HandSprite" type="AnimatedSprite2D" parent="Body" unique_id=1078800727]
+[node name="HandSprite" type="AnimatedSprite2D" parent="." unique_id=1078800727]
 z_index = 3
 position = Vector2(-385, 0)
 sprite_frames = SubResource("SpriteFrames_ebec5")
@@ -119,7 +111,7 @@ animation = &"reach"
 offset = Vector2(-56, 0)
 script = ExtResource("6_2ieo8")
 
-[node name="FinalPosition" type="ColorRect" parent="Body" unique_id=1926293704]
+[node name="FinalPosition" type="ColorRect" parent="." unique_id=1926293704]
 visible = false
 z_index = 3
 offset_right = 40.0
@@ -127,69 +119,74 @@ offset_bottom = 40.0
 pivot_offset = Vector2(19, 20)
 color = Color(1, 0, 1, 1)
 
-[node name="GrabLookAt" type="Marker2D" parent="Body" unique_id=400690945]
+[node name="GrabLookAt" type="Marker2D" parent="." unique_id=400690945]
 
-[node name="FarLookAt" type="Marker2D" parent="Body/GrabLookAt" unique_id=2013716582]
+[node name="FarLookAt" type="Marker2D" parent="GrabLookAt" unique_id=2013716582]
 position = Vector2(-723, 0)
 
-[node name="Hand" type="CharacterBody2D" parent="Body" unique_id=1092061756]
+[node name="Hand" type="CharacterBody2D" parent="." unique_id=1092061756]
 position = Vector2(-273, 0)
 collision_mask = 22
 script = ExtResource("1_yw30f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hand" unique_id=1443180520]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand" unique_id=1443180520]
 z_index = 2
 position = Vector2(-25, 0)
 shape = SubResource("RectangleShape2D_g6k8r")
 
-[node name="GrabArea" type="Area2D" parent="Body/Hand" unique_id=1368998611]
+[node name="GrabArea" type="Area2D" parent="Hand" unique_id=1368998611]
 z_index = 2
 position = Vector2(-83, 0)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hand/GrabArea" unique_id=1500911488]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/GrabArea" unique_id=1500911488]
 shape = SubResource("RectangleShape2D_qjkh3")
 
-[node name="AttachPoint" type="Marker2D" parent="Body/Hand" unique_id=401418453]
+[node name="AttachPoint" type="Marker2D" parent="Hand" unique_id=401418453]
 position = Vector2(-75, 0)
 
-[node name="SlipSound" type="AudioStreamPlayer2D" parent="Body/Hand" unique_id=411609287]
+[node name="SlipSound" type="AudioStreamPlayer2D" parent="Hand" unique_id=411609287]
 stream = ExtResource("8_2ieo8")
 volume_db = -5.832
 
-[node name="YellowThing" type="Sprite2D" parent="Body" unique_id=759971281]
+[node name="YellowThing" type="Sprite2D" parent="." unique_id=759971281]
 z_index = 1
 texture = ExtResource("8_8t03j")
 
-[node name="LegSprite" type="AnimatedSprite2D" parent="Body" unique_id=1368097961]
+[node name="ArmSprite" type="Sprite2D" parent="." unique_id=1629120050]
+texture = ExtResource("5_qjkh3")
+offset = Vector2(200, 0)
+
+[node name="LegSprite" type="AnimatedSprite2D" parent="." unique_id=1368097961]
 position = Vector2(0, 120)
 sprite_frames = SubResource("SpriteFrames_tqiix")
 animation = &"walk"
 frame = 2
 frame_progress = 0.85428613
 
-[node name="Camera2D" type="Camera2D" parent="Body" unique_id=997042604]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=997042604]
 zoom = Vector2(0.25, 0.25)
+script = ExtResource("12_kb6p2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=848691504]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=848691504]
 z_index = 1
 position = Vector2(0, 39)
 shape = SubResource("CircleShape2D_yw30f")
 
-[node name="HatAttachPoint" type="Marker2D" parent="Body" unique_id=1639428958]
+[node name="HatAttachPoint" type="Marker2D" parent="." unique_id=1639428958]
 position = Vector2(0, -91)
 
-[node name="HitBox" parent="Body" unique_id=285698282 instance=ExtResource("12_ebec5")]
+[node name="HitBox" parent="." unique_id=285698282 instance=ExtResource("12_ebec5")]
 position = Vector2(0, 39)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/HitBox" unique_id=222788671]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=222788671]
 z_index = 2
 shape = SubResource("CircleShape2D_yllr7")
 debug_color = Color(0.95853966, 0.20485106, 0.045706198, 0.41960785)
 
-[node name="HurtSound" type="AudioStreamPlayer2D" parent="Body" unique_id=1724384022]
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1724384022]
 stream = ExtResource("13_yllr7")
 volume_db = -8.587
 
-[connection signal="Damaged" from="Body/HitBox" to="Body" method="_on_hit_box_damaged"]
+[connection signal="Damaged" from="HitBox" to="." method="_on_hit_box_damaged"]

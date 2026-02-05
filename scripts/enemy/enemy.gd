@@ -29,7 +29,6 @@ var last_hurt_box: HurtBox = null
 func _ready() -> void:
 	health = max_health
 	state_machine.initialize(self)
-	player = PlayerManager.player
 	hit_box.Damaged.connect(_take_damage)
 
 func set_direction(_new_direction: Vector2) -> bool:
