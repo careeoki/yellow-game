@@ -24,7 +24,8 @@ var max_reach_round = 429
 	#LevelManager.level_load_started.connect(_on_level_load)
 
 func _physics_process(_delta: float) -> void:
-	final_position.global_position = get_global_mouse_position()
+	if body.health > 0:
+		final_position.global_position = get_global_mouse_position()
 	if final_position.position.length() > 600:
 		final_position.position = final_position.position.normalized() * 600
 	#if final_position.position.length() < 100:
@@ -63,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 
 func grab_handling():
 	var grabbables = grab_area.get_overlapping_bodies()
-	if Input.is_action_just_pressed("grab"):
+	if Input.is_action_just_pressed("grab") and body.health > 0:
 		if grabbed_object == null:
 			if grabbables.size() > 0:
 				if grabbables[0] is NPC:
@@ -105,6 +106,16 @@ func exit_grab():
 		grabbed_object.equip(hat_attach_point)
 		hat_object = grabbed_object
 		grabbed_object = null
+		set_collision_layer_value(1, true)
+		set_collision_mask_value(3, true)
+		return
+	elif grabbed_object.food_value > 0 and get_global_mouse_position().distance_to(body.global_position) < 100:
+		body.update_health(grabbed_object.food_value)
+		grabbed_object.queue_free()
+		grabbed_object = null
+		body.eat_sound.play()
+		set_collision_layer_value(1, true)
+		set_collision_mask_value(3, true)
 		return
 	else:
 		

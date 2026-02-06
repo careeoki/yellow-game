@@ -12,3 +12,6 @@ func show_dialog(text: String) -> void:
 		typing_time += get_process_delta_time()
 		dialog.visible_characters = typing_speed * typing_time as int
 		await get_tree().process_frame
+	if dialog.visible_characters == dialog.get_total_character_count():
+		await get_tree().create_timer(1).timeout
+		queue_free()

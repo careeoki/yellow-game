@@ -1,6 +1,7 @@
 class_name GrabObject extends RigidBody2D
 
 @export var equipable: bool = false
+@export var food_value: int = 0
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
 
@@ -10,6 +11,10 @@ var move_vector: Vector2
 var target_position = null
 var default_turn_speed = 20
 var equip_position = null
+
+func _ready() -> void:
+	if not is_connected("body_entered", _on_body_entered):
+		body_entered.connect(_on_body_entered)
 
 func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 	if target_position:
@@ -35,7 +40,7 @@ func equip(attach_point):
 	set_collision_layer_value(4, false)
 
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	if abs(linear_velocity.x) > hit_sound_velocity or abs(linear_velocity.y) > hit_sound_velocity:
 		hit_sound.pitch_scale = randf_range(0.9, 1.1)
 		hit_sound.play()

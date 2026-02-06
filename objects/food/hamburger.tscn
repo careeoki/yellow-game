@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bf4eq2cpp1d7j"]
+
+[ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_ax1hk"]
+[ext_resource type="Texture2D" uid="uid://c5foh0537tcrf" path="res://assets/objects/food/hamburger.png" id="2_oqk8p"]
+[ext_resource type="AudioStream" uid="uid://jnlfakd7wel5" path="res://assets/sound/davidsraba-hit-sound.wav" id="3_oqk8p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ax1hk"]
+radius = 64.86
+
+[node name="Hamburger" type="RigidBody2D" unique_id=966205641]
+collision_layer = 4
+collision_mask = 31
+mass = 0.2
+script = ExtResource("1_ax1hk")
+food_value = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=698452286]
+position = Vector2(69, 0)
+texture = ExtResource("2_oqk8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=768945047]
+position = Vector2(69, 0)
+shape = SubResource("CircleShape2D_ax1hk")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=989315207]
+stream = ExtResource("3_oqk8p")

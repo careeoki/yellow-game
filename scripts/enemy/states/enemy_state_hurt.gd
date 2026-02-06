@@ -19,7 +19,7 @@ func enter() -> void:
 	_direction = enemy.global_position.direction_to(enemy.last_hurt_box.global_position)
 	_direction = enemy.global_position.direction_to(enemy.last_hurt_box.global_position)
 	if enemy.last_hurt_box.dynamic_knockback:
-		knockback_velocity = (enemy.last_hurt_box.get_parent().linear_velocity.length()) + 200
+		knockback_velocity = (enemy.last_hurt_box.get_parent().linear_velocity.length()) + 500
 	else:
 		knockback_velocity = enemy.last_hurt_box.knockback * 10
 	enemy.set_direction(_direction)

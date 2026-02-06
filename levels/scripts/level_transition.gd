@@ -64,7 +64,7 @@ func get_offset() -> Vector2:
 		offset.y = 256
 		if side == SIDE.TOP:
 			offset.y *= -1
-	
+	print(offset)
 	return offset
 
 func _update_area() -> void:

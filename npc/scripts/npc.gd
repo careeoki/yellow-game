@@ -13,3 +13,7 @@ func create_dialog():
 	speech_bubble.global_position = bubble_marker.global_position
 	speech_bubble.show_dialog(dialog_text)
 	
+
+
+# keep dialog open until the player walks away
+# player can click again to advance dialog

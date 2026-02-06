@@ -8,12 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://brft7dqgbua7o" path="res://assets/yellow_thing/arm.png" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://dti3cssahn827" path="res://player/scripts/hand_sprite.gd" id="6_2ieo8"]
 [ext_resource type="AudioStream" uid="uid://ce5dgj15fofht" path="res://assets/sound/copyc4t__slip.wav" id="8_2ieo8"]
-[ext_resource type="Texture2D" uid="uid://c3qfyyv7ejra7" path="res://assets/yellow_thing/face/idle.png" id="8_8t03j"]
+[ext_resource type="Texture2D" uid="uid://cf4j7fqkw6c7j" path="res://assets/yellow_thing/face/damage_levels.png" id="8_wodsf"]
 [ext_resource type="Texture2D" uid="uid://n4wxxioctxvn" path="res://assets/yellow_thing/idle.png" id="9_2ieo8"]
+[ext_resource type="Script" uid="uid://cu0hvojcgy246" path="res://player/scripts/face_sprite.gd" id="9_32hag"]
+[ext_resource type="Texture2D" uid="uid://b3mu6wq8kwbkr" path="res://assets/yellow_thing/face/die.png" id="9_e7oew"]
+[ext_resource type="Texture2D" uid="uid://b1pyo2ymle7x0" path="res://assets/yellow_thing/face/hurt.png" id="9_tqiix"]
 [ext_resource type="Texture2D" uid="uid://6txgkbxvujfg" path="res://assets/yellow_thing/walk.png" id="10_ebec5"]
 [ext_resource type="PackedScene" uid="uid://7sffaafoqmor" path="res://general/hitbox/hit_box.tscn" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://cndirh3tph4w4" path="res://player/scripts/player_camera.gd" id="12_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://bl0ngyx3vio02" path="res://assets/sound/dspopain.wav" id="13_yllr7"]
+[ext_resource type="AudioStream" uid="uid://g4rl3eeltx2l" path="res://assets/sound/cartoon_eat.wav" id="18_e7oew"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ebec5"]
 animations = [{
@@ -47,6 +51,100 @@ size = Vector2(20, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkh3"]
 size = Vector2(96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(672, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(896, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(1120, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(1344, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(1568, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knn7v"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(1792, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pqkx"]
+atlas = ExtResource("8_wodsf")
+region = Rect2(2016, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uw77l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqiix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7oew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c35mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65viv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7c3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjvpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7qer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4c7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knn7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pqkx")
+}],
+"loop": true,
+"name": &"damage_states",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_e7oew")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_tqiix")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
 atlas = ExtResource("10_ebec5")
@@ -150,9 +248,11 @@ position = Vector2(-75, 0)
 stream = ExtResource("8_2ieo8")
 volume_db = -5.832
 
-[node name="YellowThing" type="Sprite2D" parent="." unique_id=759971281]
+[node name="FaceSprite" type="AnimatedSprite2D" parent="." unique_id=1203064397]
 z_index = 1
-texture = ExtResource("8_8t03j")
+sprite_frames = SubResource("SpriteFrames_uw77l")
+animation = &"damage_states"
+script = ExtResource("9_32hag")
 
 [node name="ArmSprite" type="Sprite2D" parent="." unique_id=1629120050]
 texture = ExtResource("5_qjkh3")
@@ -188,5 +288,9 @@ debug_color = Color(0.95853966, 0.20485106, 0.045706198, 0.41960785)
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1724384022]
 stream = ExtResource("13_yllr7")
 volume_db = -8.587
+
+[node name="EatSound" type="AudioStreamPlayer2D" parent="." unique_id=568486154]
+stream = ExtResource("18_e7oew")
+volume_db = -9.5
 
 [connection signal="Damaged" from="HitBox" to="." method="_on_hit_box_damaged"]

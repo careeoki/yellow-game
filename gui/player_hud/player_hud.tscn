@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bfe0x2rjqpl0y"]
+
+[ext_resource type="Script" uid="uid://cal7dxh7oemg1" path="res://gui/player_hud/player_hud.gd" id="1_iitac"]
+[ext_resource type="PackedScene" uid="uid://bcsgrupv2mf4f" path="res://gui/player_hud/game_over.tscn" id="2_qr6o2"]
+
+[node name="PlayerHUD" type="CanvasLayer" unique_id=773952696]
+script = ExtResource("1_iitac")
+
+[node name="Health" type="RichTextLabel" parent="." unique_id=1827545724]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "100"
+
+[node name="GameOver" parent="." unique_id=791499998 instance=ExtResource("2_qr6o2")]
