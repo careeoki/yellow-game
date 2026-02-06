@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cg85w3n5te0v3" path="res://levels/player_spawn.tscn" id="8_ndrhr"]
 [ext_resource type="PackedScene" uid="uid://beysf7id75iw6" path="res://objects/spike.tscn" id="8_rt2dm"]
 [ext_resource type="PackedScene" uid="uid://d25rvfi0ljs1l" path="res://levels/level_transition.tscn" id="10_q6ylf"]
+[ext_resource type="PackedScene" uid="uid://cmvk0vexc58oh" path="res://npc/test_npc.tscn" id="11_ka8eb"]
 
 [node name="Level" type="Node2D" unique_id=1335318244]
 script = ExtResource("1_ndrhr")
@@ -52,3 +53,6 @@ position = Vector2(21, 271)
 position = Vector2(2563, -2011)
 level = "uid://cwghfxev6l28"
 side = 2
+
+[node name="TestNPC" parent="." unique_id=39668024 instance=ExtResource("11_ka8eb")]
+position = Vector2(2841, 560)

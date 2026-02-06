@@ -16,7 +16,15 @@ func add_player_instance() -> void:
 	pass
 
 func set_player_position(_new_pos: Vector2) -> void:
-	player.global_position = _new_pos
+	if player.hand.grabbed_object != null:
+		player.hand.grabbed_object.freeze = true
+		player.hand.grabbed_object.global_position = player.global_position
+		player.global_position = _new_pos
+		await get_tree().process_frame
+		player.hand.grabbed_object.freeze = false
+	else:
+		player.hand.global_position = player.global_position
+		player.global_position = _new_pos
 
 func set_as_parent(_p: Node2D) -> void:
 	if player.get_parent():

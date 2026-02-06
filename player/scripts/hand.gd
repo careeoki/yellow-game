@@ -20,6 +20,8 @@ var hat_object: GrabObject = null
 var hand_velocity: Vector2
 var max_reach_round = 429
 
+#func _ready() -> void:
+	#LevelManager.level_load_started.connect(_on_level_load)
 
 func _physics_process(_delta: float) -> void:
 	final_position.global_position = get_global_mouse_position()
@@ -56,7 +58,6 @@ func _physics_process(_delta: float) -> void:
 	grab_look_at.look_at(final_position.global_position)
 	arm_sprite.look_at(hand_sprite.global_position)
 	arm_sprite.scale = Vector2(round(hand_sprite.position.length()) / max_reach_round, 1)
-	print(round(hand_sprite.position.length()) / max_reach_round, " ", round(position.length()))
 	
 
 
@@ -65,7 +66,10 @@ func grab_handling():
 	if Input.is_action_just_pressed("grab"):
 		if grabbed_object == null:
 			if grabbables.size() > 0:
-				enter_grab(grabbables[0])
+				if grabbables[0] is NPC:
+					grabbables[0].create_dialog()
+				else:
+					enter_grab(grabbables[0])
 		else:
 			exit_grab()
 	if grabbed_object != null:
@@ -115,3 +119,9 @@ func exit_grab():
 	await get_tree().create_timer(0.1).timeout
 	set_collision_layer_value(1, true)
 	set_collision_mask_value(3, true)
+
+#func _on_level_load() -> void:
+	#global_position = body.global_position
+	#set_collision_layer_value(1, false)
+	#await LevelManager.level_loaded
+	#set_collision_layer_value(1, true)

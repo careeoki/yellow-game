@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cmvk0vexc58oh"]
+
+[ext_resource type="Script" uid="uid://bhxpkkyfyyo1j" path="res://npc/scripts/npc.gd" id="1_1o87m"]
+[ext_resource type="Texture2D" uid="uid://uvinlyx0cq1" path="res://assets/npc/dino.png" id="1_87cl4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1o87m"]
+radius = 75.9
+height = 270.66
+
+[node name="TestNPC" type="RigidBody2D" unique_id=39668024]
+collision_layer = 4
+collision_mask = 31
+mass = 20.0
+lock_rotation = true
+script = ExtResource("1_1o87m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=868642269]
+texture = ExtResource("1_87cl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=133893285]
+shape = SubResource("CapsuleShape2D_1o87m")
+
+[node name="BubbleMarker" type="Marker2D" parent="." unique_id=1250352323]
+position = Vector2(-81, -146)

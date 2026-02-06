@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 LevelManager="*uid://dh2pnowcqdmu7"
 PlayerManager="*uid://d1j8u0buk82dc"
+SceneTransition="*uid://ctweeghmxpcy"
 
 [display]
 
@@ -27,7 +28,7 @@ mouse_cursor/custom_image="uid://6jk6l7jnklfg"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Dean/Videos/yellow9.avi"
+movie_writer/movie_file="C:/Users/Dean/Videos/yellow10.avi"
 movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true

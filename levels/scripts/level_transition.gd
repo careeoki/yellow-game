@@ -27,16 +27,45 @@ func _ready() -> void:
 	_update_area()
 	if Engine.is_editor_hint():
 		return
-	#monitoring = false
 	
+	monitoring = false
+	_place_player()
+	
+	await LevelManager.level_loaded
+	
+	monitoring = true
 	body_entered.connect(_player_entered)
 	
 	pass
 
 
 func _player_entered(_p: Node2D) -> void:
-	
+	if _p.get_parent() == PlayerManager.player:
+		return
+	LevelManager.load_new_level(level, target_transition_area, get_offset())
 	pass
+
+func _place_player() -> void:
+	if name != LevelManager.target_transition:
+		return
+	PlayerManager.set_player_position(global_position + LevelManager.position_offset)
+
+func get_offset() -> Vector2:
+	var offset: Vector2 = Vector2.ZERO
+	var player_pos = PlayerManager.player.global_position
+	
+	if side == SIDE.LEFT or side == SIDE.RIGHT:
+		offset.y = player_pos.y - global_position.y
+		offset.x = 256
+		if side == SIDE.LEFT:
+			offset.x *= -1
+	else:
+		offset.x = player_pos.x - global_position.x
+		offset.y = 256
+		if side == SIDE.TOP:
+			offset.y *= -1
+	
+	return offset
 
 func _update_area() -> void:
 	var new_rect: Vector2 = Vector2(256, 256)

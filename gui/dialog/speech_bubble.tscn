@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://d1wjg7kkmhtfi"]
+
+[ext_resource type="Script" uid="uid://cjiw4f5hao8ol" path="res://gui/dialog/speech_bubble.gd" id="1_0ei45"]
+
+[sub_resource type="Theme" id="Theme_0ei45"]
+default_font_size = 54
+
+[node name="SpeechBubble" type="Node2D" unique_id=57572197]
+z_index = 5
+script = ExtResource("1_0ei45")
+
+[node name="Dialog" type="RichTextLabel" parent="." unique_id=1504431904]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -441.75
+offset_top = -134.0
+offset_right = 441.75
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_0ei45")
+text = "This is text"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
