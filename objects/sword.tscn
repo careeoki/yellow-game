@@ -37,9 +37,11 @@ shape = SubResource("CapsuleShape2D_s28hv")
 stream = ExtResource("3_yas8w")
 volume_db = -14.49
 pitch_scale = 0.89
+bus = &"Sounds"
 
 [node name="HurtBox" parent="." unique_id=1365596131 instance=ExtResource("4_eda0f")]
 position = Vector2(148, 0)
+damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1037972829]
 shape = SubResource("RectangleShape2D_gcno7")

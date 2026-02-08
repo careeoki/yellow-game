@@ -225,6 +225,7 @@ collision_mask = 31
 mass = 10.0
 lock_rotation = true
 script = ExtResource("1_m5fee")
+max_health = 30
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1441428525]
 sprite_frames = SubResource("SpriteFrames_jvei7")
@@ -249,7 +250,7 @@ shape = SubResource("CapsuleShape2D_e8ssn")
 debug_color = Color(0.85776323, 0.35203984, 0.26527506, 0.41960785)
 
 [node name="HurtBox" parent="." unique_id=1365596131 instance=ExtResource("5_fgl01")]
-damage = 25
+damage = 10
 dynamic_knockback = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=642470824]

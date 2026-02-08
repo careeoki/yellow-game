@@ -249,21 +249,21 @@ stream = ExtResource("8_2ieo8")
 volume_db = -5.832
 
 [node name="FaceSprite" type="AnimatedSprite2D" parent="." unique_id=1203064397]
-z_index = 1
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_uw77l")
 animation = &"damage_states"
 script = ExtResource("9_32hag")
 
 [node name="ArmSprite" type="Sprite2D" parent="." unique_id=1629120050]
+z_index = 1
 texture = ExtResource("5_qjkh3")
 offset = Vector2(200, 0)
 
 [node name="LegSprite" type="AnimatedSprite2D" parent="." unique_id=1368097961]
+z_index = -1
 position = Vector2(0, 120)
 sprite_frames = SubResource("SpriteFrames_tqiix")
-animation = &"walk"
-frame = 2
-frame_progress = 0.85428613
+animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=997042604]
 zoom = Vector2(0.25, 0.25)

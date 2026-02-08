@@ -48,7 +48,7 @@ position = Vector2(133, -655)
 position = Vector2(2138, -672)
 
 [node name="PlayerSpawn" parent="." unique_id=809507729 instance=ExtResource("8_ndrhr")]
-position = Vector2(21, 271)
+position = Vector2(635, 86)
 
 [node name="LevelTransition" parent="." unique_id=843676590 instance=ExtResource("10_q6ylf")]
 position = Vector2(2563, -2011)
@@ -57,10 +57,14 @@ side = 2
 
 [node name="TestNPC" parent="." unique_id=39668024 instance=ExtResource("11_ka8eb")]
 position = Vector2(2841, 560)
-dialog_text = "You can Eat, a Burger's"
+dialog_text = "You can Eat, a [wave]Burger's[/wave]"
 
 [node name="Hamburger" parent="." unique_id=966205641 instance=ExtResource("12_22mt6")]
 position = Vector2(1844, 2117)
 
 [node name="Hamburger2" parent="." unique_id=140513976 instance=ExtResource("12_22mt6")]
 position = Vector2(2378, 2018)
+
+[node name="TestNPC2" parent="." unique_id=1191112225 instance=ExtResource("11_ka8eb")]
+position = Vector2(1747, 1263)
+dialog_text = "Flip! FLip! Flip thoes burgers! Those burger Dont forget the cheese! Flip those burgers"

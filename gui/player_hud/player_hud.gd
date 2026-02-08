@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var health: RichTextLabel = $Health
 @onready var game_over: MarginContainer = $GameOver
+@onready var speech_bubble: SpeechBubble = $SpeechBubble
 
 func _ready() -> void:
 	PlayerManager.player.health_changed.connect(update_health)

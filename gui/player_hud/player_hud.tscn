@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cal7dxh7oemg1" path="res://gui/player_hud/player_hud.gd" id="1_iitac"]
 [ext_resource type="PackedScene" uid="uid://bcsgrupv2mf4f" path="res://gui/player_hud/game_over.tscn" id="2_qr6o2"]
+[ext_resource type="PackedScene" uid="uid://d1wjg7kkmhtfi" path="res://gui/dialog/speech_bubble.tscn" id="3_7q0kn"]
 
 [node name="PlayerHUD" type="CanvasLayer" unique_id=773952696]
 script = ExtResource("1_iitac")
@@ -12,3 +13,9 @@ offset_bottom = 40.0
 text = "100"
 
 [node name="GameOver" parent="." unique_id=791499998 instance=ExtResource("2_qr6o2")]
+
+[node name="SpeechBubble" parent="." unique_id=1265431834 instance=ExtResource("3_7q0kn")]
+offset_left = 330.0
+offset_top = 462.0
+offset_right = 330.0
+offset_bottom = 462.0
