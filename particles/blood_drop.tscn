@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d32nsgu02wbps"]
+
+[ext_resource type="Texture2D" uid="uid://dsu0bi55yuqq3" path="res://assets/particles/blood.png" id="1_x7h0d"]
+
+[node name="BloodDrop" type="Sprite2D" unique_id=1245602636]
+modulate = Color(0.92941177, 0.047058824, 0.047058824, 1)
+z_index = -1
+texture = ExtResource("1_x7h0d")

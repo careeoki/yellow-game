@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cndirh3tph4w4" path="res://player/scripts/player_camera.gd" id="12_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://bl0ngyx3vio02" path="res://assets/sound/dspopain.wav" id="13_yllr7"]
 [ext_resource type="AudioStream" uid="uid://g4rl3eeltx2l" path="res://assets/sound/cartoon_eat.wav" id="18_e7oew"]
+[ext_resource type="AudioStream" uid="uid://bkg7mr5lyrc6f" path="res://assets/sound/magnuswaker_gore_impact.wav" id="19_c35mf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ebec5"]
 animations = [{
@@ -197,6 +198,7 @@ radius = 64.0
 radius = 55.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1755682843]
+disable_mode = 1
 collision_mask = 22
 motion_mode = 1
 script = ExtResource("1_rkbax")
@@ -292,5 +294,8 @@ volume_db = -8.587
 [node name="EatSound" type="AudioStreamPlayer2D" parent="." unique_id=568486154]
 stream = ExtResource("18_e7oew")
 volume_db = -9.5
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=865140353]
+stream = ExtResource("19_c35mf")
 
 [connection signal="Damaged" from="HitBox" to="." method="_on_hit_box_damaged"]

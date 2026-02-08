@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c6p3sxv8fttqk"]
+
+[ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_2wese"]
+[ext_resource type="Texture2D" uid="uid://dy0l1ipt85uwf" path="res://assets/yellow_thing/gibs/lower_face.png" id="1_hl7uy"]
+[ext_resource type="PackedScene" uid="uid://d07abcjacdqp2" path="res://particles/blood_trail.tscn" id="3_68eh5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wese"]
+radius = 55.71
+
+[node name="YellowLowerFace" type="RigidBody2D" unique_id=1763559521]
+collision_layer = 4
+collision_mask = 31
+mass = 0.7
+script = ExtResource("1_2wese")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=103293670]
+texture = ExtResource("1_hl7uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114246408]
+shape = SubResource("CircleShape2D_2wese")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1498376733]
+
+[node name="BloodTrail" parent="." unique_id=428733940 instance=ExtResource("3_68eh5")]

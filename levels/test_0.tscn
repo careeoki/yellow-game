@@ -56,7 +56,7 @@ level = "uid://cwghfxev6l28"
 side = 2
 
 [node name="TestNPC" parent="." unique_id=39668024 instance=ExtResource("11_ka8eb")]
-position = Vector2(2841, 560)
+position = Vector2(3094, 1298)
 dialog_text = "You can Eat, a [wave]Burger's[/wave]"
 
 [node name="Hamburger" parent="." unique_id=966205641 instance=ExtResource("12_22mt6")]
@@ -68,3 +68,12 @@ position = Vector2(2378, 2018)
 [node name="TestNPC2" parent="." unique_id=1191112225 instance=ExtResource("11_ka8eb")]
 position = Vector2(1747, 1263)
 dialog_text = "Flip! FLip! Flip thoes burgers! Those burger Dont forget the cheese! Flip those burgers"
+
+[node name="Hamburger3" parent="." unique_id=1928494154 instance=ExtResource("12_22mt6")]
+position = Vector2(2840, 1897)
+
+[node name="Hamburger4" parent="." unique_id=1395758703 instance=ExtResource("12_22mt6")]
+position = Vector2(2663, 2150)
+
+[node name="Hamburger5" parent="." unique_id=723394197 instance=ExtResource("12_22mt6")]
+position = Vector2(2081, 1937)

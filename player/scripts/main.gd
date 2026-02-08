@@ -4,6 +4,7 @@ signal health_changed(_health)
 
 var max_health: int = 100
 var health: int = 100
+var last_health: int = 100
 var direction : Vector2 = Vector2.ZERO
 
 var knockback: Vector2 = Vector2.ZERO
@@ -13,10 +14,14 @@ var invulnerable: bool = false
 @onready var leg_sprite: AnimatedSprite2D = $LegSprite
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var eat_sound: AudioStreamPlayer2D = $EatSound
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
+
 @onready var hand: PlayerHand = $Hand
 
+var gibs = preload("res://objects/gibs/yellow_thing.tscn")
 var blood = preload("res://particles/blood.tscn")
 var SMALL_BLOOD = preload("res://particles/small_blood.tscn")
+var large_blood = preload("res://particles/large_blood.tscn")
 const move_speed = 1000.0
 const acceleration = 15
 var last_hurt_box: HurtBox = null
@@ -65,39 +70,54 @@ func _on_hit_box_damaged(hurt_box: HurtBox) -> void:
 	if invulnerable:
 		return
 	last_hurt_box = hurt_box
-	if hurt_box.dynamic_knockback:
-		if abs(hurt_box.get_parent().linear_velocity.x) > 200 or abs(hurt_box.get_parent().linear_velocity.y) > 200:
-			if hurt_box.get_parent() != hand.grabbed_object:
-				create_blood()
-				hurt_sound.play()
-				update_health(-hurt_box.damage)
-				var knockback_direction = (hurt_box.global_position - global_position).normalized()
-				var knockback_velocity = (hurt_box.get_parent().linear_velocity.length() * 0.5) + 100
-				apply_knockback(knockback_direction, knockback_velocity, 0.15)
-				print(health)
-	else:
-		create_blood()
-		hurt_sound.play()
-		update_health(-hurt_box.damage)
-		var knockback_direction = (hurt_box.global_position - global_position).normalized()
-		apply_knockback(knockback_direction, hurt_box.knockback, 0.15)
+	update_health(-hurt_box.damage)
 
 func update_health(delta: int):
 	health = clampi(health + delta, 0, max_health)
 	health_changed.emit(health)
 	if health == 0:
 		die()
+	elif health < last_health:
+		take_damage()
+	last_health = health
+
+func take_damage():
+	create_blood()
+	hurt_sound.play()
+	if last_hurt_box.dynamic_knockback:
+		var knockback_direction = (last_hurt_box.global_position - global_position).normalized()
+		var knockback_velocity = (last_hurt_box.get_parent().linear_velocity.length() * 0.5) + 100
+		apply_knockback(knockback_direction, knockback_velocity, 0.15)
+	else:
+		var knockback_direction = (last_hurt_box.global_position - global_position).normalized()
+		apply_knockback(knockback_direction, last_hurt_box.knockback, 0.15)
 
 func die():
 	if hand.grabbed_object:
 		hand.exit_grab()
+	hide()
+	set_collision_layer_value(1, false)
+	hurt_sound.play()
+	death_sound.play()
+	var blood_instance = large_blood.instantiate()
+	get_tree().current_scene.call_deferred("add_child", blood_instance)
+	blood_instance.global_position = global_position
+	var gibs_instance = gibs.instantiate()
+	get_tree().current_scene.call_deferred("add_child", gibs_instance)
+	gibs_instance.global_position = global_position
+
+func revive():
+	await LevelManager.level_loaded
+	update_health(100)
+	set_collision_layer_value(1, true)
+	show()
 
 func create_blood():
 	var blood_instance = blood.instantiate()
-	var small_blood_instance = SMALL_BLOOD.instantiate()
-	get_tree().current_scene.add_child(blood_instance)
+	get_tree().current_scene.call_deferred("add_child", blood_instance)
 	blood_instance.global_position = global_position
-	get_tree().current_scene.add_child(small_blood_instance)
+	var small_blood_instance = SMALL_BLOOD.instantiate()
+	get_tree().current_scene.call_deferred("add_child", small_blood_instance)
 	small_blood_instance.global_position = global_position
 
 func apply_knockback(dir: Vector2, force: float, duration: float) -> void:

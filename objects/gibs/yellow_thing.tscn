@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://q4hs0onjirrj"]
+
+[ext_resource type="PackedScene" uid="uid://c6p3sxv8fttqk" path="res://objects/gibs/yellow_thing/lower_face.tscn" id="1_2xm5t"]
+[ext_resource type="Script" uid="uid://dbwtit1bjttv7" path="res://scripts/gib_exploder.gd" id="1_mn7wd"]
+[ext_resource type="PackedScene" uid="uid://crp57wjx8ywmo" path="res://objects/gibs/yellow_thing/upper_face.tscn" id="2_mn7wd"]
+[ext_resource type="PackedScene" uid="uid://b81mm88mnaest" path="res://objects/gibs/yellow_thing/leg.tscn" id="4_w36f4"]
+[ext_resource type="PackedScene" uid="uid://brblqvnorrx67" path="res://objects/gibs/yellow_thing/right_face.tscn" id="5_da2yf"]
+
+[node name="YellowThingGibs" type="Node2D" unique_id=426854391]
+script = ExtResource("1_mn7wd")
+
+[node name="YellowLowerFace" parent="." unique_id=1763559521 instance=ExtResource("1_2xm5t")]
+position = Vector2(33, 50)
+
+[node name="YellowUpperFace" parent="." unique_id=2097314817 instance=ExtResource("2_mn7wd")]
+position = Vector2(-44, -54)
+
+[node name="YellowLeg" parent="." unique_id=760685927 instance=ExtResource("4_w36f4")]
+position = Vector2(-51, 133)
+
+[node name="YellowLeg2" parent="." unique_id=580983068 instance=ExtResource("4_w36f4")]
+position = Vector2(82, 144)
+
+[node name="YellowRightFace" parent="." unique_id=703001017 instance=ExtResource("5_da2yf")]
+position = Vector2(71, -51)

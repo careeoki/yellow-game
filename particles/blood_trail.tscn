@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d07abcjacdqp2"]
+
+[ext_resource type="Script" uid="uid://dmja34i1narkr" path="res://particles/scripts/blood_trail.gd" id="1_a0xrl"]
+
+[node name="BloodTrail" type="Node2D" unique_id=428733940]
+script = ExtResource("1_a0xrl")
+
+[node name="Timer" type="Timer" parent="." unique_id=743373717]
+wait_time = 0.030000000000000002
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

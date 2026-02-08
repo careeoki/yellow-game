@@ -16,7 +16,7 @@ var plain_text: String
 @onready var dialog: RichTextLabel = $MarginContainer/TextMargins/Dialog
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var timer: Timer = $Timer
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var tail_sprite: Sprite2D = $TailSprite
 
 func _ready() -> void:
@@ -72,7 +72,7 @@ func _on_timer_timeout() -> void:
 
 func _new_letter_added(l: String) -> void:
 	if not ' !?,.:;"'.contains(l):
-		audio_stream_player_2d.play()
+		audio_stream_player.play()
 	if not '!?,.:;"'.contains(l):
 		start_timer(text_speed)
 	else:

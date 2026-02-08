@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cjiw4f5hao8ol" path="res://gui/dialog/speech_bubble.gd" id="1_0ei45"]
 [ext_resource type="Texture2D" uid="uid://l2gw7f8s8ipa" path="res://assets/ui/speech_bubble.png" id="2_d6ctv"]
 [ext_resource type="Texture2D" uid="uid://bx6eu6b5bvkbm" path="res://assets/ui/speech_bubble_tail.png" id="3_jtcu2"]
-[ext_resource type="AudioStream" uid="uid://jnlfakd7wel5" path="res://assets/sound/davidsraba-hit-sound.wav" id="4_e4456"]
+[ext_resource type="AudioStream" uid="uid://dffnvjr13u2" path="res://assets/sound/playerhit.mp3" id="4_e4456"]
 
 [node name="SpeechBubble" type="Control" unique_id=1265431834]
 z_index = 5
@@ -59,7 +59,7 @@ patch_margin_bottom = 64
 position = Vector2(0, -48)
 texture = ExtResource("3_jtcu2")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1227378247]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1271999075]
 stream = ExtResource("4_e4456")
 bus = &"Sounds"
 

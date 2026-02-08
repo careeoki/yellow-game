@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b81mm88mnaest"]
+
+[ext_resource type="Script" uid="uid://16pyqxpkcutl" path="res://scripts/grab_object.gd" id="1_qi7t4"]
+[ext_resource type="Texture2D" uid="uid://xwwpkiig4ahe" path="res://assets/yellow_thing/gibs/leg.png" id="2_1m8hi"]
+[ext_resource type="PackedScene" uid="uid://d07abcjacdqp2" path="res://particles/blood_trail.tscn" id="3_bn37l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w5law"]
+radius = 30.0
+
+[node name="YellowLeg" type="RigidBody2D" unique_id=760685927]
+collision_layer = 4
+collision_mask = 31
+mass = 0.7
+script = ExtResource("1_qi7t4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=827266346]
+texture = ExtResource("2_1m8hi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=268885035]
+shape = SubResource("CircleShape2D_w5law")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=474298159]
+
+[node name="BloodTrail" parent="." unique_id=428733940 instance=ExtResource("3_bn37l")]
+blood_rate = 0.05

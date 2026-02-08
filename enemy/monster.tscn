@@ -250,8 +250,9 @@ shape = SubResource("CapsuleShape2D_e8ssn")
 debug_color = Color(0.85776323, 0.35203984, 0.26527506, 0.41960785)
 
 [node name="HurtBox" parent="." unique_id=1365596131 instance=ExtResource("5_fgl01")]
-damage = 10
+damage = 25
 dynamic_knockback = false
+knockback = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=642470824]
 position = Vector2(0, 30)
